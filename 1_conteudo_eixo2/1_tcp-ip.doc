@@ -1,0 +1,80 @@
+---
+
+No modelo TCP/IP, a comunicação é fatiada em camadas, onde cada uma utiliza protocolos específicos para garantir que o dado saia da aplicação e chegue ao hardware de destino de forma íntegra.
+
+Para um projeto de infraestrutura, entender esses protocolos é vital para configurar regras de firewall, QoS (Qualidade de Serviço) e roteamento.
+
+---
+
+1. Camada de Rede (ou Internet)
+
+Responsável pelo endereçamento lógico e pela determinação da melhor rota para os dados.
+
+IP (Internet Protocol): O protagonista. Define o endereçamento (IPv4/IPv6). É um protocolo connectionless (não garante a entrega, apenas o roteamento).
+
+ICMP (Internet Control Message Protocol): Utilizado para mensagens de erro e diagnóstico. O comando ping e o traceroute dependem dele.
+
+ARP (Address Resolution Protocol): Faz a ponte entre o endereço IP (Rede) e o endereço MAC (Enlace). Essencial para a comunicação em redes locais (LAN).
+
+---
+
+2. Camada de Transporte
+
+Responsável pela comunicação fim a fim entre as aplicações e pelo controle de fluxo.
+
+TCP (Transmission Control Protocol):
+
+Características: Orientado à conexão, garante que os dados cheguem na ordem correta e sem erros (via Three-Way Handshake).
+
+Uso: Navegação web (HTTP), E-mail (SMTP), Transferência de arquivos (FTP).
+
+UDP (User Datagram Protocol):
+
+Características: Não orientado à conexão. Não garante a entrega nem a ordem, mas é extremamente rápido devido ao baixo overhead.
+
+Uso: Streaming de vídeo, Voz sobre IP (VoIP), Jogos online e consultas DNS.
+
+---
+
+3. Camada de Aplicação
+
+Onde residem os protocolos que interagem diretamente com o software e o usuário.
+
+Protocolo | Porta Padrão | Função
+
+HTTP / HTTPS | 80 / 443 | Transferência de hipertexto (Web). O HTTPS adiciona uma camada de criptografia (TLS).
+
+DNS | 53 (UDP/TCP) | Resolução de nomes (converte site.com em endereço IP).
+
+DHCP | 67 / 68 (UDP) | Atribuição dinâmica de endereços IP para hosts na rede.
+
+SSH | 22 (TCP) | Acesso remoto seguro e criptografado a servidores e ativos de rede.
+
+SMTP / IMAP | 25 / 143 / 587 | Envio e recebimento de correio eletrônico.
+
+SNMP | 161 / 162 (UDP) | Gerenciamento e monitoramento de dispositivos de rede.
+
+---
+
+4. Aspectos Essenciais para Implantação
+
+Portas (Sockets): A combinação de um Endereço IP + Porta define um ponto único de comunicação. Em firewalls, você libera serviços baseando-se no protocolo de transporte e no número da porta.
+
+MTU (Maximum Transmission Unit): O tamanho máximo de um pacote que a rede pode carregar (geralmente 1500 bytes). Configurações incorretas de MTU podem causar fragmentação excessiva e lentidão.
+
+Segurança de Protocolo: Sempre que possível, substitua protocolos inseguros (Telnet, FTP, HTTP) por suas versões criptografadas (SSH, SFTP, HTTPS) para evitar interceptação de dados (sniffing).
+
+---
+
+Resumo de Fluxo
+
+Quando você acessa um site:
+
+1. Aplicação: O navegador usa HTTPS e solicita o IP via DNS.
+
+2. Transporte: O TCP estabelece uma conexão segura na porta 443.
+
+3. Rede: O IP empacota tudo com os endereços de origem e destino para o roteador.
+
+---
+

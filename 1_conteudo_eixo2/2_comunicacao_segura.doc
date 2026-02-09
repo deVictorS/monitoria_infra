@@ -1,0 +1,56 @@
+---
+
+## 1. Protocolos de Segurança para Redes Sem Fio (Wi-Fi)
+
+A segurança em redes Wi-Fi evoluiu para combater ataques de interceptação e força bruta.
+
+* **WPA2 (AES/CCMP):** O padrão mais difundido. Utiliza criptografia forte, mas é vulnerável a ataques de dicionário no *handshake* inicial.
+* **WPA3:** O padrão atual e recomendado. Introduz o **SAE (Simultaneous Authentication of Equals)**, que protege contra ataques de força bruta offline e oferece **Criptografia Individual de Dados** em redes abertas.
+* **WPA-Enterprise (802.1X):** Em vez de uma senha única (PSK), cada usuário usa suas próprias credenciais (login/senha ou certificado). Essencial para ambientes corporativos visando auditoria e controle.
+
+---
+
+## 2. Redes Privadas Virtuais (VPN)
+
+Uma VPN cria um "túnel" seguro sobre uma rede insegura (como a Internet).
+
+* **IPsec (Internet Protocol Security):** Opera na camada de rede. Muito usado para conexões **Site-to-Site** (interligar duas filiais). É robusto e transparente para o usuário final.
+* **SSL/TLS VPN:** Opera na camada de aplicação. Geralmente usada para **Client-to-Site** (home office). Mais fácil de atravessar firewalls, pois utiliza a porta 443 (HTTPS).
+* **Protocolos Comuns:**
+* **OpenVPN:** Código aberto, altamente seguro e flexível.
+* **WireGuard:** Protocolo moderno, muito mais rápido e com código simplificado, ganhando espaço em novas implementações.
+
+
+
+---
+
+## 3. Conceitos de Firewall
+
+O firewall é a barreira de controle de tráfego baseada em regras de segurança.
+
+* **Packet Filtering (L3/L4):** Analisa apenas cabeçalhos (IP origem/destino, porta). Rápido, mas limitado.
+* **Stateful Inspection:** Mantém uma tabela de estados das conexões. Ele sabe se um pacote de entrada é uma resposta legítima a uma requisição interna.
+* **NGFW (Next-Generation Firewall):** Vai além das portas e IPs. Realiza **DPI (Deep Packet Inspection)**, identifica aplicações (ex: bloquear o chat do Facebook mas permitir o feed) e possui IPS (Sistema de Prevenção de Intrusão) integrado.
+
+---
+
+## 4. Protocolos e Certificados TLS/SSL
+
+Responsáveis pela segurança na camada de transporte, garantindo que ninguém "escute" a conversa entre cliente e servidor.
+
+* **TLS (Transport Layer Security):** É o sucessor do SSL (que é considerado inseguro e obsoleto). Atualmente, deve-se utilizar apenas **TLS 1.2 ou 1.3**.
+* **Handshake TLS:** Processo onde o cliente e servidor negociam chaves criptográficas de forma segura antes de enviar dados.
+* **Certificados Digitais (X.509):** Documentos eletrônicos que comprovam a identidade de um servidor.
+* **CA (Autoridade Certificadora):** Entidade confiável que assina o certificado (ex: Let's Encrypt, DigiCert).
+* **Cadeia de Confiança:** O dispositivo do usuário confia na CA Raiz, que por sua vez garante o certificado do site.
+
+
+
+---
+
+## Aplicação Prática no Projeto
+
+1. **Wi-Fi:** Sempre implemente WPA3 se os dispositivos forem compatíveis. Em empresas, use 802.1X integrado ao Active Directory (RADIUS).
+2. **Acesso Remoto:** Utilize VPN com MFA (Autenticação Multifator). Evite expor RDP ou SSH diretamente para a Internet.
+3. **Web:** Todo serviço web interno ou externo deve rodar sobre HTTPS (TLS 1.3), com certificados válidos para evitar alertas de segurança nos navegadores.
+

@@ -1,0 +1,69 @@
+---
+
+Para a implantação de infraestrutura, o Sistema Operacional (SO) não é apenas um software, mas o gerente dos recursos de hardware (servidores, storages e ativos de rede). Compreender como ele lida com esses recursos é vital para o dimensionamento e a resolução de problemas.
+
+---
+
+1. Estrutura e Gerência de Processos
+
+O SO atua como o mestre de obras, decidindo quem usa a CPU e quando.
+
+Processos vs. Threads: Um processo é o programa em execução (isolado); threads são unidades menores dentro de um processo que compartilham recursos.
+
+Escalonamento (Scheduling): Algoritmos que decidem a prioridade de execução. Em servidores, o foco é o Throughput (quantos processos terminam por hora) e o tempo de resposta.
+
+Concorrência e Sincronização: Quando múltiplos processos acessam o mesmo recurso (ex: um banco de dados). Sem sincronização, ocorrem falhas de integridade.
+
+Deadlock (Impasses): Ocorre quando dois processos ficam travados esperando um pelo outro. Projetos de infraestrutura devem prever mecanismos de monitoramento para evitar travamentos de serviços críticos.
+
+---
+
+2. Gerência de Memória
+
+Essencial para o desempenho de servidores e virtualização.
+
+Memória Virtual: Permite que o sistema execute programas maiores que a RAM física, usando o disco (SWAP/Arquivo de Paginação). Atenção: Uso excessivo de memória virtual degrada a performance da infraestrutura.
+
+Paginação e Segmentação: Técnicas de divisão da memória em blocos fixos (páginas) ou lógicos (segmentos) para evitar fragmentação e otimizar o uso.
+
+Mudança de Contexto (Context Switch): O custo de trocar o processo que está na CPU. Muitas mudanças de contexto em um servidor sobrecarregado indicam a necessidade de mais núcleos de CPU ou otimização de serviços.
+
+Proteção de Memória: Garante que um processo não invada o espaço de endereço de outro, fundamental para a estabilidade e segurança.
+
+---
+
+3. Gerenciamento de Arquivos e E/S (I/O)
+
+Como os dados são persistidos e como o hardware se comunica.
+
+Sistemas de Arquivos: Definição de como os dados são organizados no disco (ex: NTFS para Windows, EXT4/XFS para Linux). Em storages, o sistema de arquivos impacta a velocidade de leitura e escrita.
+
+Gerência de E/S (Entrada/Saída): O SO utiliza Drivers e interrupções para conversar com dispositivos (placas de rede, discos).
+
+Buffering e Spooling: Uso de áreas temporárias para compensar a diferença de velocidade entre dispositivos (ex: RAM rápida vs. Disco lento).
+
+---
+
+4. Sistemas Operacionais Atuais e Ambientes
+
+Monolíticos vs. Microkernels: A maioria dos SOs modernos (Linux, Windows) são monolíticos por performance, mas evoluindo para designs mais modulares.
+
+Virtualização e Containers: A infraestrutura moderna utiliza SOs enxutos para rodar Hypervisors (como VMware ESXi ou Proxmox) ou motores de containers (Docker/Kubernetes).
+
+Principais Sistemas em Servidores:
+
+Linux (Ubuntu, RedHat, Debian): Preferido por estabilidade, segurança e baixo overhead.
+
+Windows Server: Comum em ambientes que dependem de Active Directory (AD) e serviços Microsoft.
+
+---
+
+Resumo para Implantação
+
+1. Dimensionamento: Conhecer a gerência de memória ajuda a definir quanta RAM o servidor precisa para evitar paginação excessiva.
+
+2. Multiprocessamento: Escolher CPUs com mais núcleos é vital para servidores que rodam muitos processos simultâneos (Virtualização).
+
+3. Monitoramento: Ferramentas que monitoram I/O Wait e Context Switching são essenciais para identificar gargalos físicos.
+
+---

@@ -1,0 +1,95 @@
+---
+
+A Segurança da Informação (SI) em projetos de infraestrutura não é apenas sobre firewalls, mas sobre garantir a continuidade do negócio. Para uma implantação eficiente, o foco deve estar na proteção dos ativos e na conformidade com padrões internacionais.
+
+---
+
+1. O Pilar Fundamental (C.I.A.)
+
+Qualquer projeto de segurança deve garantir estes três princípios básicos:
+
+Confidencialidade: Garantir que a informação seja acessada apenas por pessoas autorizadas (Criptografia, controle de acesso).
+
+Integridade: Garantir que a informação não seja alterada de forma indevida ou acidental (Hashing, assinaturas digitais).
+
+Disponibilidade: Garantir que o sistema e os dados estejam acessíveis quando necessários (Redundância, backups, proteção anti-DDoS).
+
+---
+
+2. Normas Técnicas e Frameworks
+
+As normas padronizam os processos e garantem que a infraestrutura siga as melhores práticas globais:
+
+ISO/IEC 27001: O padrão ouro. Foca no Sistema de Gestão de Segurança da Informação (SGSI), tratando desde a segurança física até a gestão de riscos.
+
+ISO/IEC 27002: Um código de prática que detalha os controles que podem ser implementados (ex: como gerenciar senhas ou backups).
+
+LGPD (Lei Geral de Proteção de Dados): Norma jurídica brasileira que exige medidas técnicas de segurança para proteção de dados pessoais.
+
+NIST Framework: Muito utilizado para guiar a resposta a incidentes (Identificar, Proteger, Detectar, Responder e Recuperar).
+
+---
+
+3. Práticas Essenciais na Implantação de Infraestrutura
+
+Ao montar o ambiente, as seguintes práticas devem ser aplicadas por padrão (Security by Design):
+
+Defesa em Profundidade (Defense in Depth)
+
+A segurança deve ser feita em camadas. Se uma falhar, outra protege o ativo.
+
+Perímetro: Firewalls de Próxima Geração (NGFW) e IPS/IDS.
+
+Rede Interna: Segmentação por VLANs e controle de acesso à rede (NAC).
+
+Host/Endpoint: Antivírus/EDR e endurecimento de sistemas (Hardening).
+
+Controle de Acesso
+
+Princípio do Menor Privilégio: O usuário ou sistema deve ter apenas o acesso mínimo necessário para sua função.
+
+Autenticação Multifator (MFA): Requisito indispensável em acessos externos (VPN) e contas administrativas.
+
+Gestão de Vulnerabilidades e Patching
+
+Manter sistemas e firmwares de rede atualizados é a forma mais barata e eficaz de prevenir ataques conhecidos.
+
+---
+
+4. Conceitos de Proteção de Dados
+
+Criptografia:
+
+Em Repouso (At Rest): Proteção de dados em HDs e storages.
+
+Em Trânsito (In Transit): Uso de protocolos seguros (TLS/HTTPS, SSH, IPsec).
+
+Backup e Disaster Recovery:
+
+Regra 3-2-1: 3 cópias dos dados, em 2 mídias diferentes, com 1 cópia fora do site (offsite).
+
+---
+
+5. Ameaças Comuns à Infraestrutura
+
+Conhecer o inimigo ajuda na escolha dos equipamentos:
+
+Ransomware: Sequestro de dados (combatido com backups offline e segmentação).
+
+Phishing: Engenharia social para roubo de credenciais (combatido com MFA e treinamento).
+
+Ataques de Força Bruta: Tentativas exaustivas de adivinhar senhas (combatido com políticas de bloqueio).
+
+---
+
+Resumo para o Projeto
+
+Em uma implantação de infraestrutura, os pontos críticos são:
+
+1. Isolamento de Redes: Separar tráfego de visitantes, administração e produção via VLANs.
+
+2. Hardening de Ativos: Desabilitar serviços e portas desnecessárias em switches e roteadores.
+
+3. Logs e Monitoramento: Implementar um servidor de Syslog ou SIEM para visibilidade do que ocorre na rede.
+
+---

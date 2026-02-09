@@ -1,0 +1,94 @@
+---
+
+Esta etapa foca na execução prática e operacional da infraestrutura. É onde as teorias de sistemas operacionais se transformam em serviços disponíveis para a organização.
+
+---
+
+1. Implantação e Configuração de SO
+
+A implantação moderna busca padronização e velocidade para evitar erros manuais.
+
+Instalação Automatizada: Uso de imagens (ISO customizadas) e arquivos de resposta (Unattended) para replicar configurações padrão em múltiplos servidores.
+
+Hardening Inicial: Processo de fechar portas desnecessárias, desabilitar serviços supérfluos e atualizar o kernel logo após a instalação.
+
+Particionamento Estratégico: Separar o SO dos dados (ex: /var ou /home em partições distintas no Linux) para facilitar manutenções e evitar que o preenchimento de logs trave o sistema.
+
+---
+
+2. Usuários, Grupos e Permissões
+
+O controle de acesso é o pilar da segurança operacional.
+
+RBAC (Role-Based Access Control): Atribuir permissões a grupos (ex: RH, TI) e nunca diretamente a usuários individuais.
+
+Permissões de Sistema:
+
+Linux: Modelo rwx (Leitura, Escrita, Execução) para Dono, Grupo e Outros.
+
+Windows (NTFS): Permissões mais granulares e herança de pastas.
+
+Propriedade (Ownership): Garantir que processos críticos rodem com usuários de sistema sem privilégios administrativos (Non-root/Non-admin).
+
+---
+
+3. Consoles, Scripts e Gerenciamento Remoto
+
+A eficiência de um administrador de infraestrutura é medida pela sua capacidade de automatizar tarefas.
+
+CLI (Command Line Interface): O console (Bash no Linux, PowerShell no Windows) permite maior controle e menor consumo de recursos que a interface gráfica.
+
+Scripting: Automatizar tarefas repetitivas (Backups, limpeza de logs, criação de usuários em massa) usando Python, Bash ou PowerShell.
+
+Acesso Remoto Seguro:
+
+SSH (Secure Shell): Padrão para gerenciamento Linux criptografado.
+
+RDP (Remote Desktop): Padrão Windows (deve ser usado via VPN ou Gateway).
+
+Ferramentas de Gestão: Ansible, Puppet ou Chef para gerenciar centenas de servidores via código (Infrastructure as Code).
+
+---
+
+4. Servidores de Arquivos e Replicação
+
+Serviços que garantem a guarda e a disponibilidade dos dados corporativos.
+
+Protocolos de Compartilhamento:
+
+SMB/CIFS: Padrão para ambientes Windows e redes locais.
+
+NFS: Comum em ambientes Unix/Linux para montagem de volumes remotos.
+
+Quotas de Disco: Limitar o espaço que cada usuário ou setor pode ocupar para evitar o esgotamento do storage.
+
+Sistemas de Replicação:
+
+DFS (Distributed File System): No Windows, permite replicar pastas entre servidores em locais diferentes.
+
+Rsync / DRBD: No Linux, para sincronização de arquivos e espelhamento de blocos de disco.
+
+---
+
+5. Gerenciamento de Processos (Operacional)
+
+Diferente do conceito teórico, aqui focamos no monitoramento da saúde do servidor.
+
+Monitoramento em Tempo Real: Uso de ferramentas como top/htop (Linux) ou Gerenciador de Tarefas (Windows) para identificar processos zumbis ou que consomem CPU excessiva.
+
+Sinais e Interrupções: Saber como encerrar processos de forma limpa (SIGTERM) ou forçada (SIGKILL).
+
+Logs do Sistema: Consultar o Event Viewer (Windows) ou /var/log (Linux) para entender por que um serviço falhou.
+
+---
+
+Resumo para Implantação
+
+1. Padronização: Use scripts para configurar todos os servidores da mesma forma.
+
+2. Segurança: Implemente MFA para acessos remotos e siga o princípio do privilégio mínimo.
+
+3. Disponibilidade: Configure replicação para dados críticos de forma que a falha de um servidor não pare a operação.
+
+---
+

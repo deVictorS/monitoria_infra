@@ -1,0 +1,96 @@
+---
+
+1. Fundamentos: Sinais e Transmissão
+
+A base de qualquer rede é a camada física. Aqui, transformamos dados binários em fenômenos físicos.
+
+Sinais: Podem ser analógicos (contínuos) ou digitais (discretos). Em infraestrutura moderna, priorizamos o digital pela menor suscetibilidade a ruídos.
+
+Modulação: Técnica para adequar o sinal ao meio de transmissão (ex: transformar dados digitais em ondas de rádio no Wi-Fi).
+
+Meios de Transmissão:
+
+Guiados: Cabo metálico (UTP - Par trançado) e Fibra Óptica (essencial para backbones e longas distâncias).
+
+Não Guiados: Radiofrequência (Wi-Fi, Micro-ondas).
+
+---
+
+2. Topologias de Rede
+
+A topologia define como os dispositivos estão conectados e como o tráfego flui.
+
+Estrela (Star): A mais comum em LANs modernas. Todos os nós se conectam a um concentrador central (Switch). Se um cabo rompe, apenas um host cai.
+
+Malha (Mesh): Redundância total. Utilizada em backbones e redes Wi-Fi Mesh profissionais, onde os nós se conectam entre si para garantir que o dado chegue mesmo se um caminho falhar.
+
+Barramento e Anel: Consideradas legadas em redes locais, mas o conceito de Anel ainda é vital em redes de transporte óptico de alta disponibilidade.
+
+---
+
+3. Modelos de Referência: OSI vs. TCP/IP
+
+Estes modelos padronizam a comunicação para que equipamentos de fabricantes diferentes conversem entre si.
+
+Modelo OSI (7 Camadas)
+
+Foco conceitual e educacional. Ajuda no troubleshooting (diagnóstico de problemas).
+
+Modelo TCP/IP (4 ou 5 Camadas)
+
+Foco prático e funcional. É a arquitetura real da Internet e das redes corporativas.
+
+Camada TCP/IP | Função Principal | Equipamento Associado
+
+Aplicação | Interface com o usuário e serviços (HTTP, DNS, FTP). | Gateway de Aplicação, Firewall (L7).
+
+Transporte | Controle fim-a-fim, correção de erros (TCP) ou velocidade (UDP). | Firewall (L4).
+
+Rede/Internet | Endereçamento lógico (IP) e roteamento de pacotes. | Roteador e Switch L3.
+
+Enlace | Endereçamento físico (MAC Address) e controle de acesso ao meio. | Switch L2, Access Point.
+
+Física | Transmissão de bits brutos pelo meio físico. | Hub (legado), Cabos, Transceivers.
+
+---
+
+4. Cabeçalhos, Funções e Overhead
+
+Cada camada adiciona informações de controle aos dados originais (processo de Encapsulamento).
+
+Cabeçalhos (Headers): Contêm informações vitais como IPs de origem/destino e portas.
+
+Overhead: Refere-se à carga extra de dados necessária para garantir a entrega. Em projetos de infraestrutura, um overhead excessivo pode reduzir a largura de banda útil (Throughput).
+
+Segmentação: O transporte divide os dados em partes menores; a rede os transforma em pacotes e o enlace em quadros (frames).
+
+---
+
+5. Protocolos e Serviços Essenciais
+
+Em uma implantação, estes serviços são o coração da rede:
+
+IP (Internet Protocol): Responsável pelo endereçamento. O IPv4 ainda é dominante, mas o IPv6 é obrigatório em novos projetos.
+
+TCP/UDP: O TCP garante que o dado chegue (ex: e-mail); o UDP foca em velocidade (ex: voz sobre IP).
+
+DHCP: Atribuição automática de endereços IP.
+
+DNS: Tradução de nomes (ex: google.com) em IPs. Sem ele, a rede é funcional, mas inutilizável para humanos.
+
+ICMP: Protocolo de diagnóstico (o famoso ping).
+
+---
+
+6. Aplicação em Projetos de Infraestrutura
+
+Ao planejar a implantação, considere:
+
+1. Domínio de Colisão vs. Domínio de Broadcast: Use Switches para eliminar colisões e VLANs (Virtual LANs) para limitar o tráfego de broadcast e aumentar a segurança.
+
+2. Padrões IEEE: Siga as normas (ex: 802.3 para Ethernet, 802.11 para Wi-Fi) para garantir compatibilidade entre marcas (Cisco, Aruba, Ubiquiti).
+
+3. Redundância: Em camadas críticas (Core da rede), utilize equipamentos em par para evitar Ponto Único de Falha.
+
+---
+
