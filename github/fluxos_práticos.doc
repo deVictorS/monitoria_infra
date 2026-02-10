@@ -1,0 +1,87 @@
+FLUXO 1 — Projeto pessoal simples (solo)
+
+Criar o projeto
+git init
+git add .
+git commit -m "Primeiro commit"
+
+Conectar ao GitHub
+git remote add origin <url>
+git branch -M main
+git push -u origin main
+
+Rotina normal de trabalho
+Você altera arquivos →
+git status
+git add .
+git commit -m "Descrição clara do que mudou"
+git push
+
+Esse é o ciclo básico:
+Editar → Add → Commit → Push.
+
+
+FLUXO 2 — Trabalho em equipe (usando branches)
+
+Esse é o mais comum em times.
+
+Sempre começar atualizando
+git checkout main
+git pull
+
+Criar uma branch para sua tarefa
+git checkout -b feature/nome-da-feature
+
+Trabalhar normalmente
+git add .
+git commit -m "Implementa X"
+git push -u origin feature/nome-da-feature
+
+Abrir Pull Request no GitHub
+Depois da revisão e aprovação:
+
+Atualizar main local
+git checkout main
+git pull
+
+Apagar branch antiga
+git branch -d feature/nome-da-feature
+
+Fluxo mental aqui é:
+Main sempre estável → Cada tarefa em sua própria branch.
+
+
+FLUXO 3 — Corrigir bug urgente (hotfix)
+
+Situação: algo quebrou em produção.
+
+Ir para main atualizada
+git checkout main
+git pull
+
+Criar branch de correção
+git checkout -b hotfix/correcao-bug
+
+Corrigir
+git add .
+git commit -m "Corrige bug crítico X"
+git push -u origin hotfix/correcao-bug
+
+Merge via Pull Request
+
+Atualizar main novamente
+git checkout main
+git pull
+
+
+
+Resumo visual mental
+
+Projeto solo:
+Editar → Add → Commit → Push
+
+Time:
+Pull → Branch → Trabalhar → Push → Pull Request → Merge
+
+Bug urgente:
+Main → Hotfix branch → Corrigir → Merge
